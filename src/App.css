@@ -1,38 +1,106 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  color: #e6eef8;
+}
+
+/* App layout */
+nav {
   display: flex;
-  flex-direction: column;
+  gap: 12px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 16px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+nav a {
+  color: #cfdff6;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #e6eef8;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+main {
+  padding: 32px;
+}
+
+/* Card-like containers */
+.calculator, .auth {
+  background: linear-gradient(180deg, #151515, #0f0f10);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  padding: 20px 22px;
+  border-radius: 10px;
+  color: #e6eef8;
+}
+
+.calculator h2, .auth h2 {
+  margin: 0 0 14px 0;
+  font-weight: 600;
+  color: #f6f8fb;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #bcd0ee;
+  margin-bottom: 6px;
+}
+
+input[type="number"], input[type="email"], input[type="password"], input[type="text"], select {
+  width: 100%;
+  padding: 10px 12px;
+  background: #0b0b0c;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #e6eef8;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.08);
+  border-color: rgba(99, 179, 237, 0.6);
+}
+
+button {
+  background: linear-gradient(180deg,#2e7bd6,#1e5fb7);
   color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.04);
+  margin: 16px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calculator p, .auth p {
+  color: #c4d5f3;
+  font-size: 14px;
 }
+
+.calculator .small-muted {
+  font-size: 13px;
+  color: #94a9d6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main { padding: 16px }
+  .calculator, .auth { padding: 16px }
+}
+
