@@ -71,7 +71,7 @@ function formatMoney(value, decimals = 2) {
 
 <template>
   <div class="calculator">
-    <h2>Gold & Silver Calculator</h2>
+    <h2>Gold & Silver Calculato</h2>
     <div class="row">
       <label>Metal</label>
       <select v-model="metal">

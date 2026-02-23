@@ -1,14 +1,21 @@
 export default async function fetchMarketPrice() {
-  // Try local proxy first to avoid CORS issues (run server.js)
-  const proxyUrl = 'http://localhost:4000/api/price'
+  // Try relative serverless proxy first (works on Vercel and local dev if deployed),
+  // fall back to direct public endpoints if serverless not available.
+  const proxyUrl = '/api/price'
   try {
     const rp = await fetch(proxyUrl)
     if (rp.ok) {
       const d = await rp.json()
       if (d && (d.gold || d.silver)) return { gold: d.gold || 0, silver: d.silver || 0 }
+      // if proxy responded but didn't include prices, include details
+      if (d && d.error) throw new Error('proxy: ' + (d.error + (d.details ? ' - ' + JSON.stringify(d.details) : '')))
+    } else {
+      const txt = await rp.text().catch(() => '')
+      throw new Error('proxy returned ' + rp.status + ' ' + txt)
     }
   } catch (e) {
-    // fallthrough to direct attempts
+    // fallthrough to direct attempts but capture proxy error
+    console.error('proxy /api/price error', e)
   }
 
   // direct browser attempts (may fail due to CORS)
